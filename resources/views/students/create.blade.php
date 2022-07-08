@@ -1,3 +1,4 @@
+@include('inc.navbar')
 @extends('students.layout')
 @section('content')
 <div class="card">

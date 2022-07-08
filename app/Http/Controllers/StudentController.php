@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
 
         $students= Student::paginate(5);
@@ -29,6 +34,7 @@ class StudentController extends Controller
         $student->studname =$request->input('studname');
         $student->course =$request->input('course');
         $student->fee =$request->input('fee');
+        $student->user_id=auth()->user()->id;
         if($request->hasfile('profile_picture')){
             $file=$request->file('profile_picture');
             $extension = $file->getClientOriginalExtension();

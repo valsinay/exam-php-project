@@ -14,8 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-
+Route::get('/students', 'StudentController@index')->middleware('auth');
+// Route::get('/students/create', 'StudentController@index')->middleware('auth');
 Route::resource('students','App\Http\Controllers\StudentController');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
